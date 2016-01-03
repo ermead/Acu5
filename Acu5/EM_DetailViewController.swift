@@ -171,11 +171,11 @@ class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollect
         
         let topLabel3 = NSLayoutConstraint(item: label3, attribute: .Top, relatedBy: .Equal, toItem: label2, attribute: .Bottom, multiplier: 1, constant: 10)
         
-        let topCollectionView = NSLayoutConstraint(item: collectionView, attribute: .Top, relatedBy: .Equal, toItem: label3, attribute: .Bottom, multiplier: 1, constant: 10)
+        let topLabel4 = NSLayoutConstraint(item: label4, attribute: .Top, relatedBy: .Equal, toItem: label3, attribute: .Bottom, multiplier: 1, constant: 10)
         
-        let topLabel4 = NSLayoutConstraint(item: label4, attribute: .Top, relatedBy: .Equal, toItem: collectionView, attribute: .Bottom, multiplier: 1, constant: 10)
+        let topCollectionView = NSLayoutConstraint(item: collectionView, attribute: .Top, relatedBy: .Equal, toItem: label4, attribute: .Bottom, multiplier: 1, constant: 10)
         
-        let topLabel5 = NSLayoutConstraint(item: label5, attribute: .Top, relatedBy: .Equal, toItem: label4, attribute: .Bottom, multiplier: 1, constant: 10)
+        let topLabel5 = NSLayoutConstraint(item: label5, attribute: .Top, relatedBy: .Equal, toItem: collectionView, attribute: .Bottom, multiplier: 1, constant: 10)
         
         let topLabel6 = NSLayoutConstraint(item: label6, attribute: .Top, relatedBy: .Equal, toItem: label5, attribute: .Bottom, multiplier: 1, constant: 10)
         
