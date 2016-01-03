@@ -14,6 +14,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     let nc = NSNotificationCenter.defaultCenter()
     var selectedCategory: String = " "
+    var array: [AnyObject] = []
     var count: Int = 0
     var selectedItem: String = " "
     var selectedImage: UIImageView?
@@ -38,14 +39,16 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
             if userInfo["data"] as! String == "Points"{
                 let category = (userInfo["selected"])
                 self.selectedCategory = category as! String
-                self.count = channelCounts[selectedCategory] as! Int
+                self.array = PointController.sharedController.pointsByChannel(selectedCategory)
+                self.count = self.array.count
                 self.collectionView.reloadData()
             }
             if userInfo["data"] as! String == "Herbs"{
                 let category = (userInfo["selected"])
                 self.selectedCategory = category as! String
-                
-            
+                self.array = HerbsController.sharedController.herbsByCategory(selectedCategory)
+                self.count = self.array.count
+                self.collectionView.reloadData()
             }
         }
     }
@@ -56,11 +59,23 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_CollectionViewCell
         
-        let category = self.selectedCategory as! String
-        let stringNumber = String(indexPath.item + 1)
         cell?.frame.size.width = (self.view.frame.width - 40) / 3 - 10
         cell?.frame.size.height = (cell?.frame.size.width)!
-        cell?.label.text = "\(category) - \(stringNumber)"
+     
+        let array = self.array
+        
+        if let item = array[indexPath.item] as? Point {
+            
+            cell?.label.text = "\(item.channelAbrev!) - \(item.number!)"
+            
+        }
+        
+        if let item = array[indexPath.item] as? Herb {
+            
+            cell?.label.text = "\(item.pinyinName!)"
+            
+        }
+        
         
         return cell!
     }

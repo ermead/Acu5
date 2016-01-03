@@ -79,6 +79,21 @@ class PointController: NSObject {
         }
     }
     
+    func pointsByChannel(channelAbrev: String) -> [Point] {
+        let predicate = NSPredicate(format: "channelAbrev == %@", channelAbrev)
+        let request = NSFetchRequest(entityName: "Point")
+        request.predicate = predicate
+        
+        do {
+            let pointsArray = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Point]
+            
+            return pointsArray
+            
+        } catch {
+            return []
+        }
+    }
+    
     var pointsByPointOnMeridian: [Point] {
         
         let array = points

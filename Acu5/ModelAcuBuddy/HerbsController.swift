@@ -85,6 +85,21 @@ class HerbsController: NSObject {
         }
     }
     
+    func herbsByCategory(category: String) -> [Herb] {
+        let predicate = NSPredicate(format: "category == %@", category)
+        let request = NSFetchRequest(entityName: "Herb")
+        request.predicate = predicate
+        
+        do {
+            let herbsArray = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Herb]
+            
+            return herbsArray
+            
+        } catch {
+            return []
+        }
+    }
+    
     var windColdHerbs: [Herb] {
         
         let windCold = self.herbs.filter({ $0.category!.containsString("Release Wind-Cold Exterior") })
