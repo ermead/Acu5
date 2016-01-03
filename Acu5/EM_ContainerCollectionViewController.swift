@@ -15,10 +15,12 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     let transition = PopAnimator()
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.collectionView.backgroundColor = UIColor.whiteColor()
+      
     }
     
     //MARK: Collection View

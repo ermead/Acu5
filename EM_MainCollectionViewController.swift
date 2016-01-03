@@ -22,6 +22,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         self.navigationController?.navigationBarHidden = false
         
         self.view.backgroundColor = UIColor.tableBg()
+        
+        self.collectionView.backgroundColor = UIColor.whiteColor()
 
         // Do any additional setup after loading the view.
     }
@@ -33,7 +35,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_CollectionViewCell
         
         let images = EM_ImagesController.sharedInstance.images
-        let image = images[indexPath.row]
+//        let image = images[indexPath.row]
+        let image = images[0]
         
         cell?.imageView.image = image.image
         
@@ -45,7 +48,9 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         let images = EM_ImagesController.sharedInstance.images
         
-        return images.count
+//        return images.count
+        
+        return 12
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

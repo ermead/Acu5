@@ -38,6 +38,21 @@ extension UIColor {
         
         return UIColor.whiteColor()
     }
+    
+    static func homePopUpView() -> UIColor {
+        
+        return UIColor.whiteColor()
+    }
+    
+    static func homePopUpButtons() -> UIColor {
+        
+        return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 1)
+    }
+    
+    static func homePopUpDismissButton() -> UIColor {
+        
+        return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 1)
+    }
 
     //MainTableView
     
