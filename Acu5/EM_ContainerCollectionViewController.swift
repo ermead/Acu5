@@ -14,6 +14,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     let transition = PopAnimator()
     
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,9 +38,11 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let images = EM_ImagesController.sharedInstance.images
+//        let images = EM_ImagesController.sharedInstance.images
+//        
+//        return images.count
         
-        return images.count
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

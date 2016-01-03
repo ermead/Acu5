@@ -15,9 +15,9 @@ static let sharedInstance = EM_ImagesController()
 
 var images: [Image] {
     
-    //let InnerClassic = Image(image: UIImage(named: "TransparentInnerClassic")!)
+    let InnerClassic = Image(image: UIImage(named: "TransparentInnerClassic")!)
     
-    let array = []
+    let array = [InnerClassic]
     
     return array as! [Image]
 }

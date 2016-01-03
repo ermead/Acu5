@@ -14,6 +14,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     
     let transition = PopAnimator()
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,20 +52,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         //print(indexPath)
         
-        let vc = ScrollAndZoomViewController() as UIViewController
-        
-        let cell: EM_CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! EM_CollectionViewCell
-        
-        self.selectedImage = cell.imageView
-        
-        kImageViewToPresent = cell.imageView
-        
-        vc.transitioningDelegate = self
-        
-        presentViewController(vc, animated: true) { () -> Void in
-            
-            
-        }
+        performSegueWithIdentifier("toDetailView", sender: self)
         
         
     }
