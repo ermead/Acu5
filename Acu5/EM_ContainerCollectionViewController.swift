@@ -25,10 +25,10 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.collectionView.backgroundColor = UIColor.whiteColor()
-      
+        self.view.backgroundColor = UIColor.homeBg()
+        self.collectionView.backgroundColor = UIColor.collectionBg()
         nc.addObserver(self, selector: "handleCategoryChosen:", name: "category chosen", object: nil)
+        
     }
     
     func handleCategoryChosen(notification: NSNotification){
@@ -50,7 +50,8 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         
         let category = self.selectedCategory as! String
         let stringNumber = String(indexPath.item + 1)
-        
+        cell?.frame.size.width = (self.view.frame.width - 40) / 3 - 10
+        cell?.frame.size.height = (cell?.frame.size.width)!
         cell?.label.text = "\(category) - \(stringNumber)"
         
         return cell!

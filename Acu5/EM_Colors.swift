@@ -41,12 +41,12 @@ extension UIColor {
     
     static func homePopUpView() -> UIColor {
         
-        return UIColor.whiteColor()
+        return UIColor(red: 0, green: 0, blue: 0.553, alpha: 0.3)
     }
     
     static func homePopUpButtons() -> UIColor {
         
-        return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 0.3)
+        return UIColor(red: 0, green: 0, blue: 0.553, alpha: 0.3)
     }
     
     static func homePopUpDismissButton() -> UIColor {
@@ -59,6 +59,11 @@ extension UIColor {
     static func tableBg() -> UIColor {
         
         return UIColor(red: 0.016, green: 0.700, blue: 0.553, alpha: 1)
+    }
+    
+    static func collectionBg() -> UIColor {
+        
+        return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 0.3)
     }
     
 

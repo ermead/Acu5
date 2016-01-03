@@ -26,9 +26,14 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         self.view.backgroundColor = UIColor.tableBg()
         
-        self.collectionView.backgroundColor = UIColor.whiteColor()
+        self.collectionView.backgroundColor = UIColor.collectionBg()
+        
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.collectionView.frame.size.height = (self.view.frame.width - 40) / 4 + 10
     }
     
     //MARK: Collection View
@@ -36,6 +41,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_CollectionViewCell
+        cell?.frame.size.width = (self.view.frame.width - 40) / 4 - 10
+        cell?.frame.size.height = (cell?.frame.size.width)!
         
         let array = channels
         cell?.label.text = array[indexPath.item]
