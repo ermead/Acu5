@@ -87,16 +87,37 @@ class EM_HomeViewController: UIViewController {
         
     }
     
-    func buttonTappedHandler(sender: AnyObject){
+    func buttonTappedHandler(sender: UIButton){
         
-        if sender.accessibilityIdentifier == "button1" {
-            print("button1")
+       
+        if sender.titleLabel?.text == "Points" {
+            print("points")
             performSegueWithIdentifier("toTableView", sender: self)
         }
         
-        if sender.accessibilityIdentifier == "button2" {
-            print("button2")
+        if sender.titleLabel?.text == "Herbs" {
+            print("herbs")
             performSegueWithIdentifier("toTableView", sender: self)
+        }
+        
+        if sender.titleLabel?.text == "Charts" {
+            print("charts")
+  
+        }
+        
+        if sender.titleLabel?.text == "Settings" {
+            print("settings")
+    
+        }
+        
+        if sender.titleLabel?.text == "Advanced" {
+            print("advanced")
+           
+        }
+        
+        if sender.titleLabel?.text == "More" {
+            print("more")
+        
         }
         
     }
@@ -193,10 +214,10 @@ extension EM_HomeViewController {
         
         
         dismissButtonForHamburgerPopup.addTarget(self, action: "dismissButtonForHamburgerPopupTapped", forControlEvents: .TouchUpInside)
-        popUpButton1.addTarget(self, action: "popUpButton1Tapped", forControlEvents: .TouchUpInside)
-        popUpButton2.addTarget(self, action: "popUpButton2Tapped", forControlEvents: .TouchUpInside)
-        popUpButton3.addTarget(self, action: "popUpButton3Tapped", forControlEvents: .TouchUpInside)
-        popUpButton4.addTarget(self, action: "popUpButton4Tapped", forControlEvents: .TouchUpInside)
+        popUpButton1.addTarget(self, action: "buttonTappedHandler:", forControlEvents: .TouchUpInside)
+        popUpButton2.addTarget(self, action: "buttonTappedHandler:", forControlEvents: .TouchUpInside)
+        popUpButton3.addTarget(self, action: "buttonTappedHandler:", forControlEvents: .TouchUpInside)
+        popUpButton4.addTarget(self, action: "buttonTappedHandler:", forControlEvents: .TouchUpInside)
        
         dismissButtonForHamburgerPopup.setTitle("X", forState: .Normal)
         popUpButton1.setTitle("button1", forState: .Normal)
