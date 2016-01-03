@@ -11,7 +11,7 @@ import UIKit
 let kItemChosenNotification = "item chosen"
 
 class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
     let nc = NSNotificationCenter.defaultCenter()
     var selectedCategory: String = " "
     var count: Int = 0
@@ -35,10 +35,18 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         
         print("notified")
         if let userInfo = notification.userInfo {
-            let category = (userInfo["selected"])
-            self.selectedCategory = category as! String
-            self.count = channelCounts[selectedCategory] as! Int
-            self.collectionView.reloadData()
+            if userInfo["data"] as! String == "Points"{
+                let category = (userInfo["selected"])
+                self.selectedCategory = category as! String
+                self.count = channelCounts[selectedCategory] as! Int
+                self.collectionView.reloadData()
+            }
+            if userInfo["data"] as! String == "Herbs"{
+                let category = (userInfo["selected"])
+                self.selectedCategory = category as! String
+                
+            
+            }
         }
     }
     

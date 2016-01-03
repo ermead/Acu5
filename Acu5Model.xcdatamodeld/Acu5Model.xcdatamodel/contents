@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="CDImage" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="reference" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="herb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Herb" inverseName="images" inverseEntity="Herb" syncable="YES"/>
+        <relationship name="point" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Point" inverseName="images" inverseEntity="Point" syncable="YES"/>
+    </entity>
+    <entity name="Herb" syncable="YES">
+        <attribute name="botanicalName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chineseCharacter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commonName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="earliestRecord" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="englishName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gatheringInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="majorFormulas" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="meridians" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pharmName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pinyinName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uses" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uses1" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDImage" inverseName="herb" inverseEntity="CDImage" storedInTruthFile="YES" syncable="YES"/>
+    </entity>
+    <entity name="Point" syncable="YES">
+        <attribute name="actions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="channel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="channelAbrev" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chineseCharacter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="englishName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="locationDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="meeting" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="needling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neuroanatomy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pinyinName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pointOnMeridian" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="specialCategories" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="triggerPointAssociations" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uses" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="warning" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDImage" inverseName="point" inverseEntity="CDImage" storedInTruthFile="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Point" positionX="-56" positionY="-90" width="128" height="328"/>
+        <element name="Herb" positionX="-54" positionY="-9" width="128" height="313"/>
+        <element name="CDImage" positionX="-36" positionY="-27" width="128" height="105"/>
+    </elements>
+</model>

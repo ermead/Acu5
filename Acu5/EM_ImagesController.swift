@@ -13,13 +13,42 @@ class EM_ImagesController {
 
 static let sharedInstance = EM_ImagesController()
 
-var images: [Image] {
+    var images: [Image] {
+        
+        let InnerClassic = Image(image: UIImage(named: "TransparentInnerClassic")!)
+        
+        let array = [InnerClassic]
+        
+        return array as! [Image]
+    }
     
-    let InnerClassic = Image(image: UIImage(named: "TransparentInnerClassic")!)
     
-    let array = [InnerClassic]
+    static func getDataFromImage(image: UIImage) -> NSData? {
+        
+        if let data = UIImageJPEGRepresentation(image, 1.0) {
+            
+            //let imageData = UIImagePNGRepresentation(image, 1.0)
+            
+            return data
+            
+        } else {
+            return nil
+            print("error converting image to data")
+        }
+        
+    }
     
-    return array as! [Image]
+    static func getImageFromData(imageData: NSData) -> UIImage? {
+        
+        if let image = UIImage(data: imageData){
+            
+            return image
+        } else {
+            return nil
+            print("there was an error getting the image from data")
+        }
+        
+        
+    }
 }
 
-}

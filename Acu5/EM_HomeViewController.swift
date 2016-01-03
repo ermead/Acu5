@@ -19,6 +19,7 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 class EM_HomeViewController: UIViewController {
 
+    var data: String?
     let bgView = UIView()
     let button1 = UIButton()
     let button2 = UIButton()
@@ -199,11 +200,13 @@ class EM_HomeViewController: UIViewController {
        
         if sender.titleLabel?.text == "Points" {
             print("points")
+            self.data = "Points"
             performSegueWithIdentifier("toTableView", sender: self)
         }
         
         if sender.titleLabel?.text == "Herbs" {
             print("herbs")
+            self.data = "Herbs"
             performSegueWithIdentifier("toTableView", sender: self)
         }
         
@@ -235,8 +238,12 @@ class EM_HomeViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toTableView" {
-            
             print("to table view")
+            if let mcvc: EM_MainCollectionViewController = segue.destinationViewController as? EM_MainCollectionViewController{
+                
+                    mcvc.data = self.data
+            
+                }
             
         }
     }

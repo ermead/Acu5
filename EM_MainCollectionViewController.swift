@@ -10,12 +10,34 @@ import UIKit
 
 class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    var data: String?
+    
     var selectedImage: UIImageView?
     
     let transition = PopAnimator()
     
     let channels = ["LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC", "SJ", "GB", "LR", "REN", "DU"]
-
+    var categories: [String] = [
+        "Release Wind-Cold Exterior",
+        "Release Wind-Heat Exterior",
+        "Clear Damp-Heat",
+        "Clear Blood Heat",
+        "Purge Heat",
+        "Clear Toxic Heat",
+        "Clear Deficiency-Heat",
+        "Drain Dampness",
+        "Laxative",
+        "Dispel Wind-Damp",
+        "Dissolve Hot Phlegm",
+        "Dissolve Cold Phlegm",
+        "Stop Cough",
+        "Aromatics to Resolve Dampness",
+        "Promote Digestion",
+        "Regulate Qi Flow",
+        "Stop Bleeding",
+        "Move the Blood",
+        "Warm the Interior"
+    ]
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -43,9 +65,17 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_CollectionViewCell
         cell?.frame.size.width = (self.view.frame.width - 40) / 4 - 10
         cell?.frame.size.height = (cell?.frame.size.width)!
-        
+        if data == "Points"{
         let array = channels
         cell?.label.text = array[indexPath.item]
+        }
+        if data == "Herbs"{
+        let array = categories
+        cell?.label.text = array[indexPath.item]
+        
+        }
+        
+        
         cell?.imageView.backgroundColor = UIColor.lightGrayColor()
       
         return cell!
@@ -53,15 +83,30 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let array = channels
-        return array.count
+        var count: Int!
+        if data == "Points"{
+            let array = channels
+            count = array.count
+        }
+        if data == "Herbs"{
+            let array = categories
+            count = array.count
+        }
+        return count!
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let nc = NSNotificationCenter.defaultCenter()
-        let userInfo = ["selected" : channels[indexPath.item]]
-        nc.postNotificationName("category chosen", object: self, userInfo: userInfo)
+        if data == "Points"{
+            let userInfo: NSDictionary = ["data" : self.data!, "selected" : channels[indexPath.item]]
+            nc.postNotificationName("category chosen", object: self, userInfo: userInfo as [NSObject : AnyObject])
+        }
+        if data == "Herbs"{
+            let userInfo: NSDictionary = ["data" : self.data!, "selected" : categories[indexPath.item]]
+            nc.postNotificationName("category chosen", object: self, userInfo: userInfo as [NSObject : AnyObject])
+        
+        }
         
     }
 
