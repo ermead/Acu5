@@ -67,55 +67,53 @@ class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollect
         
         entry = kEntry
         
-        //setUpEntry()
+        setUpEntry()
         
         setUpLabels()
         
         setUpDismissButton(self.view)
         
-        
-        
-        
+  
         // Do any additional setup after loading the view.
     }
     
 
     
-//    func setUpEntry(){
-//        
-//        if let entry = entry as? Point {
-//            
-//            /*Point(pinyinName: <#T##String?#>, englishName: <#T##String?#>, chineseCharacter: <#T##String?#>, pointOnMeridian: <#T##String?#>, channelAbrev: <#T##String?#>, number: <#T##String?#>, specialCategories: <#T##String?#>, locationDescription: <#T##String?#>, channel: <#T##String?#>, uses: <#T##String?#>, meeting: <#T##String?#>, actions: <#T##String?#>, needling: <#T##String?#>, warning: <#T##String?#>, neuroAnatomy: <#T##String?#>, triggerPointAssociations: <#T##String?#>, imageName: <#T##String?#>, images: <#T##NSSet?#>, context: <#T##NSManagedObjectContext#>)*/
-//            
-//            text1 = entry.channelAbrev! + "-" + entry.number!
-//            label1.textAlignment = NSTextAlignment.Center
-//            text2 = entry.chineseCharacter!
-//            text3 = entry.pinyinName!
-//            text4 = entry.englishName!
-//            text5 = entry.locationDescription!
-//            text6 = entry.actions!
-//            text7 = entry.uses!
-//            text8 = entry.needling!
-//            text9 = entry.warning!
-//        }
-//        
-//        if let entry = entry as? Herb {
-//            
-//            /*Herb(pinyinName: <#T##String?#>, pharmName: <#T##String?#>, commonName: <#T##String?#>, botanicalName: <#T##String?#>, englishName: <#T##String?#>, chineseCharacter: <#T##String?#>, category: <#T##String?#>, temp: <#T##String?#>, meridians: <#T##String?#>, uses: <#T##String?#>, uses1: <#T##String?#>, earliestRecord: <#T##String?#>, gatheringInfo: <#T##String?#>, dosage: <#T##String?#>, majorFormulas: <#T##String?#>, images: <#T##NSSet?#>, context: <#T##NSManagedObjectContext#>)*/
-//            
-//            text1 = entry.pinyinName!
-//            label1.textAlignment = NSTextAlignment.Center
-//            text2 = entry.chineseCharacter!
-//            text3 = entry.pinyinName!
-//            text4 = entry.englishName!
-//            text5 = entry.botanicalName!
-//            text6 = entry.category!
-//            text7 = entry.temp!
-//            text8 = entry.uses!
-//            text9 = entry.uses1!
-//        }
-//        
-//    }
+    func setUpEntry(){
+        
+        if let entry = entry as? Point {
+            
+            /*Point(pinyinName: <#T##String?#>, englishName: <#T##String?#>, chineseCharacter: <#T##String?#>, pointOnMeridian: <#T##String?#>, channelAbrev: <#T##String?#>, number: <#T##String?#>, specialCategories: <#T##String?#>, locationDescription: <#T##String?#>, channel: <#T##String?#>, uses: <#T##String?#>, meeting: <#T##String?#>, actions: <#T##String?#>, needling: <#T##String?#>, warning: <#T##String?#>, neuroAnatomy: <#T##String?#>, triggerPointAssociations: <#T##String?#>, imageName: <#T##String?#>, images: <#T##NSSet?#>, context: <#T##NSManagedObjectContext#>)*/
+            
+            text1 = entry.channelAbrev! + "-" + entry.number!
+            label1.textAlignment = NSTextAlignment.Center
+            text2 = entry.chineseCharacter!
+            text3 = entry.pinyinName!
+            text4 = entry.englishName!
+            text5 = entry.locationDescription!
+            text6 = entry.actions!
+            text7 = entry.uses!
+            text8 = entry.needling!
+            text9 = entry.warning!
+        }
+        
+        if let entry = entry as? Herb {
+            
+            /*Herb(pinyinName: <#T##String?#>, pharmName: <#T##String?#>, commonName: <#T##String?#>, botanicalName: <#T##String?#>, englishName: <#T##String?#>, chineseCharacter: <#T##String?#>, category: <#T##String?#>, temp: <#T##String?#>, meridians: <#T##String?#>, uses: <#T##String?#>, uses1: <#T##String?#>, earliestRecord: <#T##String?#>, gatheringInfo: <#T##String?#>, dosage: <#T##String?#>, majorFormulas: <#T##String?#>, images: <#T##NSSet?#>, context: <#T##NSManagedObjectContext#>)*/
+            
+            text1 = entry.pinyinName!
+            label1.textAlignment = NSTextAlignment.Center
+            text2 = entry.chineseCharacter!
+            text3 = entry.pinyinName!
+            text4 = entry.englishName!
+            text5 = entry.botanicalName!
+            text6 = entry.category!
+            text7 = entry.temp!
+            text8 = entry.uses!
+            text9 = entry.uses1!
+        }
+        
+    }
     
 
 

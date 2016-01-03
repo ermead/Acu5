@@ -12,11 +12,14 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
 
     var data: String?
     
+  
+    
     var selectedImage: UIImageView?
     
     let transition = PopAnimator()
     
     let channels = ["LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC", "SJ", "GB", "LR", "REN", "DU"]
+    
     var categories: [String] = [
         "Release Wind-Cold Exterior",
         "Release Wind-Heat Exterior",

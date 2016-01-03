@@ -12,6 +12,8 @@ let kItemChosenNotification = "item chosen"
 
 class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var countLabel: UILabel!
+    
     let nc = NSNotificationCenter.defaultCenter()
     var selectedCategory: String = " "
     var array: [AnyObject] = []
@@ -25,6 +27,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
+        self.countLabel.text = ""
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.homeBg()
         self.collectionView.backgroundColor = UIColor.collectionBg()
@@ -41,6 +44,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
                 self.selectedCategory = category as! String
                 self.array = PointController.sharedController.pointsByChannel(selectedCategory)
                 self.count = self.array.count
+                countLabel.text = String(self.count)
                 self.collectionView.reloadData()
             }
             if userInfo["data"] as! String == "Herbs"{
@@ -48,6 +52,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
                 self.selectedCategory = category as! String
                 self.array = HerbsController.sharedController.herbsByCategory(selectedCategory)
                 self.count = self.array.count
+                countLabel.text = String(self.count)
                 self.collectionView.reloadData()
             }
         }
@@ -62,21 +67,28 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         cell?.frame.size.width = (self.view.frame.width - 40) / 3 - 10
         cell?.frame.size.height = (cell?.frame.size.width)!
      
-        let array = self.array
-        
-        if let item = array[indexPath.item] as? Point {
+        if let arrayPoints = self.array as? [Point] {
             
-            cell?.label.text = "\(item.channelAbrev!) - \(item.number!)"
+            array = arrayPoints.sort { $0.pointOnMeridian!.localizedStandardCompare($1.pointOnMeridian!) == NSComparisonResult.OrderedAscending }
             
+            if let item = array[indexPath.item] as? Point {
+                
+                cell?.label.text = "\(item.channelAbrev!) - \(item.number!)"
+                
+            }
         }
         
-        if let item = array[indexPath.item] as? Herb {
+        if let arrayOfHerbs = self.array as? [Herb] {
             
-            cell?.label.text = "\(item.pinyinName!)"
+            array = arrayOfHerbs.sort { $0.pinyinName!.localizedCaseInsensitiveCompare($1.pinyinName!) == NSComparisonResult.OrderedAscending }
             
+            if let item = array[indexPath.item] as? Herb {
+                
+                cell?.label.text = "\(item.pinyinName!)"
+                
+            }
         }
-        
-        
+      
         return cell!
     }
     
@@ -88,6 +100,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        kEntry = self.array[indexPath.item]
         performSegueWithIdentifier("toDetailView", sender: self)
         
     }
@@ -97,12 +110,8 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         if segue.identifier == "toDetailView" {
             
              if let _: EM_DetailViewController = segue.destinationViewController as? EM_DetailViewController {
-                let indexPath = collectionView.indexPathsForSelectedItems()?.first?.item
-                let category = self.selectedCategory as! String
-                let stringNumber = String(indexPath! + 1)
-                let reference = "\(category) - \(stringNumber)"
-                print(reference)
-                kEntry = reference
+              
+                print(kEntry)
             }
           
         }
