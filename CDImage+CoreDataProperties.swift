@@ -1,9 +1,9 @@
 //
-//  Image+CoreDataProperties.swift
-//  TraditionalMedicineCapstoneProject
+//  CDImage+CoreDataProperties.swift
+//  Acu5
 //
-//  Created by Eric Mead on 11/19/15.
-//  Copyright © 2015 Eric Mead. All rights reserved.
+//  Created by Eric Mead on 1/3/16.
+//  Copyright © 2016 Eric Mead. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -14,9 +14,9 @@ import CoreData
 
 extension CDImage {
 
-    @NSManaged var imageData: NSData?
+    @NSManaged var image: NSData?
+    @NSManaged var reference: String?
     @NSManaged var herb: Herb?
-    @NSManaged var point: Point?
-
+    @NSManaged var point: NSManagedObject?
 
 }
