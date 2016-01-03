@@ -11,7 +11,7 @@ var kArray: [AnyObject] = []
 var kEntry: AnyObject?
 
 class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
-    
+    let nc = NSNotificationCenter.defaultCenter()
     let transition = PopAnimator()
     // set this image when you want to use the pop animator to expand it.
     
@@ -62,6 +62,7 @@ class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.navigationController?.navigationBarHidden = false
         
         entry = kEntry
@@ -77,6 +78,8 @@ class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollect
         
         // Do any additional setup after loading the view.
     }
+    
+
     
 //    func setUpEntry(){
 //        

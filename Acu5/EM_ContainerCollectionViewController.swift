@@ -8,9 +8,16 @@
 
 import UIKit
 
+let kItemChosenNotification = "item chosen"
+
 class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    let nc = NSNotificationCenter.defaultCenter()
+    var selectedCategory: String = " "
+    var count: Int = 0
+    var selectedItem: String = " "
     var selectedImage: UIImageView?
+    let channelCounts: NSDictionary = ["LU" : 11, "LI" : 18, "ST" : 45, "SP" : 21, "HT" : 9, "SI" : 21, "BL" : 67, "KI" : 27, "PC" : 9, "SJ" : 23, "GB" : 45, "LR" : 18, "REN": 24, "DU": 26]
     
     let transition = PopAnimator()
     
@@ -18,9 +25,21 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.collectionView.backgroundColor = UIColor.whiteColor()
       
+        nc.addObserver(self, selector: "handleCategoryChosen:", name: "category chosen", object: nil)
+    }
+    
+    func handleCategoryChosen(notification: NSNotification){
+        
+        print("notified")
+        if let userInfo = notification.userInfo {
+            let category = (userInfo["selected"])
+            self.selectedCategory = category as! String
+            self.count = channelCounts[selectedCategory] as! Int
+            self.collectionView.reloadData()
+        }
     }
     
     //MARK: Collection View
@@ -29,10 +48,10 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_CollectionViewCell
         
-        let images = EM_ImagesController.sharedInstance.images
-        let image = images[indexPath.row]
+        let category = self.selectedCategory as! String
+        let stringNumber = String(indexPath.item + 1)
         
-        cell?.imageView.image = image.image
+        cell?.label.text = "\(category) - \(stringNumber)"
         
         return cell!
     }
@@ -40,30 +59,28 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        let images = EM_ImagesController.sharedInstance.images
-//        
-//        return images.count
-        
-        return 1
+        return count
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        //print(indexPath)
+        performSegueWithIdentifier("toDetailView", sender: self)
         
-        let vc = ScrollAndZoomViewController() as UIViewController
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let cell: EM_CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! EM_CollectionViewCell
-        
-        self.selectedImage = cell.imageView
-        
-        kImageViewToPresent = cell.imageView
-        
-        vc.transitioningDelegate = self
-        
-        presentViewController(vc, animated: true) { () -> Void in
+        if segue.identifier == "toDetailView" {
             
-            
+             if let _: EM_DetailViewController = segue.destinationViewController as? EM_DetailViewController {
+                let indexPath = collectionView.indexPathsForSelectedItems()?.first?.item
+                let category = self.selectedCategory as! String
+                let stringNumber = String(indexPath! + 1)
+                let reference = "\(category) - \(stringNumber)"
+                print(reference)
+                kEntry = reference
+            }
+          
         }
     }
 

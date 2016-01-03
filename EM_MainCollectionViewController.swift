@@ -14,6 +14,9 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     
     let transition = PopAnimator()
     
+    let channels = ["LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC", "SJ", "GB", "LR", "REN", "DU"]
+
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -34,31 +37,24 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_CollectionViewCell
         
-        let images = EM_ImagesController.sharedInstance.images
-//        let image = images[indexPath.row]
-        let image = images[0]
-        
-        cell?.imageView.image = image.image
-        
+        let array = channels
+        cell?.label.text = array[indexPath.item]
+        cell?.imageView.backgroundColor = UIColor.lightGrayColor()
+      
         return cell!
     }
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        let images = EM_ImagesController.sharedInstance.images
-        
-//        return images.count
-        
-        return 12
+        let array = channels
+        return array.count
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        //print(indexPath)
-        
-        performSegueWithIdentifier("toDetailView", sender: self)
-        
+        let nc = NSNotificationCenter.defaultCenter()
+        let userInfo = ["selected" : channels[indexPath.item]]
+        nc.postNotificationName("category chosen", object: self, userInfo: userInfo)
         
     }
 

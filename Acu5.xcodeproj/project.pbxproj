@@ -28,6 +28,7 @@
 		D754CD481C3892C300B49343 /* EM_ScrollAndZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754CD471C3892C300B49343 /* EM_ScrollAndZoom.swift */; };
 		D754CD4A1C38942900B49343 /* EM_LocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754CD491C38942900B49343 /* EM_LocationCoordinates.swift */; };
 		D754CD4C1C38953D00B49343 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754CD4B1C38953D00B49343 /* PopAnimator.swift */; };
+		D754CD4E1C39009A00B49343 /* railway.gif in Resources */ = {isa = PBXBuildFile; fileRef = D754CD4D1C39009A00B49343 /* railway.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D754CD471C3892C300B49343 /* EM_ScrollAndZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EM_ScrollAndZoom.swift; sourceTree = "<group>"; };
 		D754CD491C38942900B49343 /* EM_LocationCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EM_LocationCoordinates.swift; sourceTree = "<group>"; };
 		D754CD4B1C38953D00B49343 /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		D754CD4D1C39009A00B49343 /* railway.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = railway.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				D754CD151C387DF600B49343 /* Acu5 */,
 				D754CD141C387DF600B49343 /* Products */,
+				D754CD4D1C39009A00B49343 /* railway.gif */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D754CD4E1C39009A00B49343 /* railway.gif in Resources */,
 				D754CD211C387DF600B49343 /* LaunchScreen.storyboard in Resources */,
 				D754CD1E1C387DF600B49343 /* Assets.xcassets in Resources */,
 				D754CD1C1C387DF600B49343 /* Main.storyboard in Resources */,
