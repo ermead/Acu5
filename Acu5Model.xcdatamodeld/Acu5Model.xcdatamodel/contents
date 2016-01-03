@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
-    <entity name="CDImage" syncable="YES">
+    <entity name="CDImage" representedClassName="CDImage" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="reference" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="herb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Herb" inverseName="images" inverseEntity="Herb" syncable="YES"/>
         <relationship name="point" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Point" inverseName="images" inverseEntity="Point" syncable="YES"/>
     </entity>
-    <entity name="Herb" syncable="YES">
+    <entity name="Herb" representedClassName="Herb" syncable="YES">
         <attribute name="botanicalName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chineseCharacter" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,7 +26,7 @@
         <attribute name="uses1" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDImage" inverseName="herb" inverseEntity="CDImage" storedInTruthFile="YES" syncable="YES"/>
     </entity>
-    <entity name="Point" syncable="YES">
+    <entity name="Point" representedClassName="Point" syncable="YES">
         <attribute name="actions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="channel" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="channelAbrev" optional="YES" attributeType="String" syncable="YES"/>
@@ -37,7 +37,7 @@
         <attribute name="locationDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meeting" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="needling" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="neuroanatomy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neuroAnatomy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pinyinName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pointOnMeridian" optional="YES" attributeType="String" syncable="YES"/>

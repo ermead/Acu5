@@ -23,7 +23,7 @@ extension Point {
     @NSManaged var locationDescription: String?
     @NSManaged var meeting: String?
     @NSManaged var needling: String?
-    @NSManaged var neuroanatomy: String?
+    @NSManaged var neuroAnatomy: String?
     @NSManaged var number: String?
     @NSManaged var pinyinName: String?
     @NSManaged var pointOnMeridian: String?

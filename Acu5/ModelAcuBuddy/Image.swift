@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Image)
+@objc(CDImage)
 class CDImage: NSManagedObject {
 
 
@@ -19,7 +19,7 @@ class CDImage: NSManagedObject {
         
         self.init(entity: entity!, insertIntoManagedObjectContext: context)
         
-        self.imageData = data
+        self.image = data
     }
     
 

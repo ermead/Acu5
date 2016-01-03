@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 // A delay function
 func delay(seconds seconds: Double, completion:()->()) {
@@ -48,7 +49,7 @@ class EM_HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         layoutBackground()
         
         setUpHamburgerButton()
@@ -232,8 +233,20 @@ class EM_HomeViewController: UIViewController {
         
     }
     
-    func deleteCoreData(){
+    func deleteCoreData() {
         
+        let classObjectsToBeDeleted = ["Herb", "Point", "CDImage"]
+        
+        for thing in classObjectsToBeDeleted {
+            let fetchRequest = NSFetchRequest(entityName: thing)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do { try Stack.sharedStack.managedObjectContext.executeRequest(deleteRequest)
+            } catch _ as NSError {
+                print("error deleting batch")
+                return
+            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
