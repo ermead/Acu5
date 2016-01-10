@@ -417,8 +417,6 @@ class PointUses: NSObject {
         case .DU27   :  self.use = DU27
         case .DU28   :  self.use = DU28
             
-        default : self.use = "default"
-            
         }
         
         return self.use!

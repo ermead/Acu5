@@ -9,7 +9,12 @@
 import UIKit
 
 class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
+    let status = UIImageView(image: UIImage(named: "banner"))
+    let label = UILabel()
+    let messagesPoints = ["Choose a Channel"]
+    let messagesHerbs = ["Choose a Category"]
+    
     var data: String?
    
     var selectedImage: UIImageView?
@@ -53,7 +58,25 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         setUpSelectedBox()
         
+        status.hidden = true
+        status.center.x = self.view.center.x
+        status.frame.origin.y = self.view.frame.origin.y + (self.navigationController?.navigationBar.frame.height)! + 35
+        view.addSubview(status)
+        
+        label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
+        label.font = UIFont(name: "HelveticaNeue", size: 18.0)
+        label.textColor = UIColor(red: 0.89, green: 0.38, blue: 0.0, alpha: 1.0)
+        label.textAlignment = .Center
+        status.addSubview(label)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if data == "Points" {
+            showMessages(0, arrayOfMessages: messagesPoints)
+        } else if data == "Herbs" {
+            showMessages(0, arrayOfMessages: messagesHerbs)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -245,9 +268,57 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         }
         
     }
+}
+extension EM_MainCollectionViewController {
+    
+    func showMessages(index: Int, arrayOfMessages: [String]) {
+        
+        let thisArrayOfMessages = arrayOfMessages
+        
+        UIView.animateWithDuration(0.33, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseOut, animations: { () -> Void in
+            
+            self.status.center.x += self.view.frame.size.width
+            
+            }, completion: { _ in
+                
+                self.status.hidden = true
+                self.status.center.x -= self.view.frame.size.width
+                self.label.text = thisArrayOfMessages[index]
+                
+                UIView.transitionWithView(self.status, duration: 0.3, options: [.CurveEaseOut, .TransitionCurlDown] , animations: { () -> Void in
+                    self.status.hidden = false
+                    self.view.bringSubviewToFront(self.status)
+                    
+                    }, completion: { _ in
+                        
+                        delay(seconds: 2.0, completion: {
+                            if index < thisArrayOfMessages.count-1 {
+                                
+                                self.showMessages(index + 1, arrayOfMessages: thisArrayOfMessages)
+                                
+                            } else {
+                                
+                                UIView.animateWithDuration(1, animations: { () -> Void in
+                                    
+                                    
+                                    }, completion: { _ in
+                                        
+                                        
+                                        
+                                        
+                                })
+                                
+                            }
+                            
+                        })
+                        
+                })
+        })
+    }
+    
+}
 
 
-  
 
     /*
     // MARK: - Navigation
@@ -259,7 +330,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     }
     */
 
-}
+
 
 //extension EM_MainCollectionViewController: UIViewControllerTransitioningDelegate {
 //    

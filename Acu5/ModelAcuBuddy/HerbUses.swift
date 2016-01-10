@@ -160,7 +160,6 @@ class HerbUses: NSObject {
         case .GouTeng : self.use = gouTeng
         case .TianMa : self.use = tianMa
             
-        default : self.use = "default"
             
         }
         

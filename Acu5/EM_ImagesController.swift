@@ -19,7 +19,7 @@ static let sharedInstance = EM_ImagesController()
         
         let array = [InnerClassic]
         
-        return array as! [Image]
+        return array
     }
     
     
@@ -32,8 +32,9 @@ static let sharedInstance = EM_ImagesController()
             return data
             
         } else {
-            return nil
             print("error converting image to data")
+            return nil
+           
         }
         
     }
@@ -44,8 +45,9 @@ static let sharedInstance = EM_ImagesController()
             
             return image
         } else {
-            return nil
             print("there was an error getting the image from data")
+            return nil
+            
         }
         
         

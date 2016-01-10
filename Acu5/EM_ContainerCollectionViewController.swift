@@ -77,9 +77,13 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         cell?.layer.borderColor = UIColor.blackColor().CGColor
         cell?.layer.borderWidth = 1
         cell?.label.textColor = UIColor.blackColor()
+        cell?.topLabel.textColor = UIColor.blackColor()
+        cell?.bottomLabel.textColor = UIColor.blackColor()
         
         if cell?.backgroundColor == UIColor.waterCellColor() || cell?.backgroundColor == UIColor.blackColor() || cell?.backgroundColor == UIColor.fireCellColor() {
             cell?.label.textColor = UIColor.whiteColor()
+            cell?.topLabel.textColor = UIColor.whiteColor()
+            cell?.bottomLabel.textColor = UIColor.whiteColor()
         }
         
         if let arrayPoints = self.array as? [Point] {
@@ -101,8 +105,17 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
                 cell?.topLabel.text = item.chineseCharacter!
                 cell?.label.text = "\(item.pinyinName!)"
                 cell?.bottomLabel.text = item.englishName!
+               
             }
         }
+        
+        if cell?.topLabel.text?.containsString("(?)") == true {
+            cell?.topLabel.text = cell?.topLabel.text?.stringByReplacingOccurrencesOfString("(?)", withString: "")
+        }
+        
+        cell?.topLabel.frame.size.height = (cell?.topLabel.requiredHeight())!
+        cell?.label.frame.size.height = (cell?.label.requiredHeight())!
+        cell?.bottomLabel.frame.size.height = (cell?.bottomLabel.requiredHeight())!
       
         return cell!
     }
