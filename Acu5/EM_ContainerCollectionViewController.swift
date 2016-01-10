@@ -87,9 +87,9 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
             array = arrayPoints.sort { $0.pointOnMeridian!.localizedStandardCompare($1.pointOnMeridian!) == NSComparisonResult.OrderedAscending }
             
             if let item = array[indexPath.item] as? Point {
-                
+                cell?.topLabel.text = item.chineseCharacter!
                 cell?.label.text = "\(item.channelAbrev!) - \(item.number!)"
-                
+                cell?.bottomLabel.text = item.englishName!
             }
         }
         
@@ -98,9 +98,9 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
             array = arrayOfHerbs.sort { $0.pinyinName!.localizedCaseInsensitiveCompare($1.pinyinName!) == NSComparisonResult.OrderedAscending }
             
             if let item = array[indexPath.item] as? Herb {
-                
+                cell?.topLabel.text = item.chineseCharacter!
                 cell?.label.text = "\(item.pinyinName!)"
-                
+                cell?.bottomLabel.text = item.englishName!
             }
         }
       
