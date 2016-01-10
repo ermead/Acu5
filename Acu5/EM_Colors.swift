@@ -54,7 +54,7 @@ extension UIColor {
         return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 1)
     }
 
-    //MainTableView
+    //MainColectionView
     
     static func tableBg() -> UIColor {
         
@@ -65,6 +65,76 @@ extension UIColor {
         
         return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 0.3)
     }
+    
+    //CollectionView Cells
+    
+    //CHANNELS:
+    static func waterCellColor() -> UIColor {
+        
+        return UIColor.blueColor()
+    }
+    
+    static func woodCellColor() -> UIColor {
+        
+        return UIColor.greenColor()
+    }
+
+    static func fireCellColor() -> UIColor {
+        
+        return UIColor.redColor()
+    }
+
+    static func earthCellColor() -> UIColor {
+        
+        return UIColor.yellowColor()
+    }
+    
+    static func metalCellColor() -> UIColor {
+        
+        return UIColor.whiteColor()
+    }
+    //HERB CATEGORIES:
+    /* "Release Wind-Cold Exterior",
+    "Release Wind-Heat Exterior",
+    "Clear Damp-Heat",
+    "Clear Blood Heat",
+    "Purge Heat",
+    "Clear Toxic Heat",
+    "Clear Deficiency-Heat",
+    "Drain Dampness",
+    "Laxative",
+    "Dispel Wind-Damp",
+    "Dissolve Hot Phlegm",
+    "Dissolve Cold Phlegm",
+    "Stop Cough",
+    "Aromatics to Resolve Dampness",
+    "Promote Digestion",
+    "Regulate Qi Flow",
+    "Stop Bleeding",
+    "Move the Blood",
+    "Warm the Interior"*/
+    
+    static func herbCatWindCold() -> UIColor {
+        return UIColor.greenColor()
+    }
+    static func herbCatWindHeat() -> UIColor {
+        return UIColor.greenColor()
+    }
+    static func herbCatHeat() -> UIColor {
+        return UIColor.redColor()
+    }
+    static func herbCatDamp() -> UIColor {
+        return UIColor.yellowColor()
+    }
+    static func herbCatCold() -> UIColor {
+        return UIColor.blueColor()
+    }
+    static func herbCatDry() -> UIColor {
+        return UIColor.whiteColor()
+    }
+  
+
+    
     
 
 

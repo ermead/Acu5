@@ -16,11 +16,12 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     let nc = NSNotificationCenter.defaultCenter()
     var selectedCategory: String = " "
+    var cellColor: UIColor = UIColor.whiteColor()
     var array: [AnyObject] = []
     var count: Int = 0
     var selectedItem: String = " "
     var selectedImage: UIImageView?
-    let channelCounts: NSDictionary = ["LU" : 11, "LI" : 18, "ST" : 45, "SP" : 21, "HT" : 9, "SI" : 21, "BL" : 67, "KI" : 27, "PC" : 9, "SJ" : 23, "GB" : 45, "LR" : 18, "REN": 24, "DU": 26]
+//    let channelCounts: NSDictionary = ["LU" : 11, "LI" : 18, "ST" : 45, "SP" : 21, "HT" : 9, "SI" : 21, "BL" : 67, "KI" : 27, "PC" : 9, "SJ" : 23, "GB" : 45, "LR" : 18, "REN": 24, "DU": 26]
     
     let transition = PopAnimator()
     
@@ -28,6 +29,7 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     
     override func viewDidLoad() {
         self.countLabel.text = ""
+        self.countLabel.textColor = UIColor.whiteColor()
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.homeBg()
         self.collectionView.backgroundColor = UIColor.collectionBg()
@@ -41,18 +43,22 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         if let userInfo = notification.userInfo {
             if userInfo["data"] as! String == "Points"{
                 let category = (userInfo["selected"])
+                let color = (userInfo["color"])
                 self.selectedCategory = category as! String
+                self.cellColor = color as! UIColor
                 self.array = PointController.sharedController.pointsByChannel(selectedCategory)
                 self.count = self.array.count
-                countLabel.text = String(self.count)
+                countLabel.text = String("\(category!) channel has \(self.count) points on record")
                 self.collectionView.reloadData()
             }
             if userInfo["data"] as! String == "Herbs"{
                 let category = (userInfo["selected"])
+                let color = (userInfo["color"])
                 self.selectedCategory = category as! String
+                self.cellColor = color as! UIColor
                 self.array = HerbsController.sharedController.herbsByCategory(selectedCategory)
                 self.count = self.array.count
-                countLabel.text = String(self.count)
+                countLabel.text = String("\(category!) category has \(self.count) herbs on record")
                 self.collectionView.reloadData()
             }
         }
@@ -66,7 +72,11 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         
         cell?.frame.size.width = (self.view.frame.width - 40) / 3 - 10
         cell?.frame.size.height = (cell?.frame.size.width)!
-     
+        cell?.backgroundColor = cellColor
+        cell?.layer.cornerRadius = 10
+        cell?.layer.borderColor = UIColor.blackColor().CGColor
+        cell?.layer.borderWidth = 1
+        
         if let arrayPoints = self.array as? [Point] {
             
             array = arrayPoints.sort { $0.pointOnMeridian!.localizedStandardCompare($1.pointOnMeridian!) == NSComparisonResult.OrderedAscending }
