@@ -76,6 +76,11 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         cell?.layer.cornerRadius = 10
         cell?.layer.borderColor = UIColor.blackColor().CGColor
         cell?.layer.borderWidth = 1
+        cell?.label.textColor = UIColor.blackColor()
+        
+        if cell?.backgroundColor == UIColor.waterCellColor() || cell?.backgroundColor == UIColor.blackColor() || cell?.backgroundColor == UIColor.fireCellColor() {
+            cell?.label.textColor = UIColor.whiteColor()
+        }
         
         if let arrayPoints = self.array as? [Point] {
             

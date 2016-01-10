@@ -64,6 +64,13 @@ extension UIColor {
     static func collectionBg() -> UIColor {
         
         return UIColor(red: 0.016, green: 0.400, blue: 0.553, alpha: 0.3)
+        
+    }
+    
+    static func selectedBoxColor() -> UIColor {
+        
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
+        
     }
     
     //CollectionView Cells

@@ -13,7 +13,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     var data: String?
    
     var selectedImage: UIImageView?
-    
+    let selectedBox = UIView()
     //let transition = PopAnimator()
     
     let channels = ["LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC", "SJ", "GB", "LR", "REN", "DU"]
@@ -51,7 +51,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         self.collectionView.backgroundColor = UIColor.collectionBg()
         
-
+        setUpSelectedBox()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -82,6 +83,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
                 cell?.backgroundColor = UIColor.earthCellColor()
             } else if ch == "HT" || ch == "SI" || ch == "SJ" || ch == "PC" {
                 cell?.backgroundColor = UIColor.fireCellColor()
+                cell?.label.textColor = UIColor.whiteColor()
             } else if ch == "LR" || ch == "GB" {
                 cell?.backgroundColor = UIColor.woodCellColor()
             } else if ch == "KI" || ch == "BL" {
@@ -165,7 +167,23 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         return count!
     }
     
+    func setUpSelectedBox(){
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = selectedBox.bounds
+        self.selectedBox.addSubview(blurEffectView)
+        self.selectedBox.layer.cornerRadius = 5
+        self.selectedBox.backgroundColor = UIColor.selectedBoxColor()
+        self.selectedBox.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        collectionView.addSubview(selectedBox)
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let frame1 = collectionView.cellForItemAtIndexPath(indexPath)?.frame
+        let frame = CGRect(x: (frame1?.origin.x)! - 5, y: (frame1?.origin.y)! - 5, width: (frame1?.width)! + 10, height: (frame1?.height)! + 10)
+        selectedBox.frame = frame
+        collectionView.sendSubviewToBack(selectedBox)
         
         let nc = NSNotificationCenter.defaultCenter()
         
