@@ -103,7 +103,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         if data == "Points"{
         let array = channels
         cell?.label.text = array[indexPath.item]
-            
+        cell?.label.font = UIFont.systemFontOfSize(17)
             let ch = cell?.label.text
             
             if ch == "LU" || ch == "LI" {
@@ -126,6 +126,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         if data == "Herbs"{
         let array = categories
         cell?.label.text = array[indexPath.item]
+        cell?.label.font = UIFont.systemFontOfSize(12)
            /* "Release Wind-Cold Exterior",
             "Release Wind-Heat Exterior",
             "Clear Damp-Heat",
@@ -159,6 +160,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
                 "Stop Bleeding" || cat ==
                 "Move the Blood" {
                 cell?.backgroundColor = UIColor.herbCatHeat()
+                cell?.label.textColor = UIColor.whiteColor()
             } else if cat ==  "Drain Dampness" || cat ==
                 "Laxative" || cat ==
                 "Dispel Wind-Damp" || cat ==
@@ -173,7 +175,16 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
                 cell?.backgroundColor = UIColor.herbCatCold()
                 cell?.label.textColor = UIColor.whiteColor()
             }
-        
+            
+            if cell?.label.text == "Aromatics to Resolve Dampness" {
+                cell?.label.text = "Aromatic Resolve Damp"
+            } else if cell?.label.text == "Clear Deficiency-Heat" {
+                cell?.label.text = "Clear Deficient Heat"
+            } else if cell?.label.text == "Drain Dampness" {
+                cell?.label.text = "Drain Damp"
+            } else if cell?.label.text?.containsString("-") == true {
+                cell?.label.text = cell?.label.text?.stringByReplacingOccurrencesOfString("-", withString: " ")
+            }
         }
         
         
@@ -210,8 +221,6 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
        
-       
-        
         let frame1 = collectionView.cellForItemAtIndexPath(indexPath)?.frame
         let frame = CGRect(x: (frame1?.origin.x)! - 5, y: (frame1?.origin.y)! - 5, width: (frame1?.width)! + 10, height: (frame1?.height)! + 10)
         
@@ -229,9 +238,6 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
 
             var color: UIColor!
             let ch = channels[indexPath.item]
-            
-            let message = "\(ch) channel Points"
-     
             
             if ch == "LU" || ch == "LI" {
                 color = UIColor.metalCellColor()
@@ -256,9 +262,6 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
             
             var color: UIColor!
             let cat = categories[indexPath.item]
-            
-            let message = "\(cat) Herbs"
-            
             
             if cat == "Release Wind-Cold Exterior"{
                 color = UIColor.herbCatWindCold()
@@ -306,7 +309,7 @@ extension EM_MainCollectionViewController {
         
         UIView.transitionWithView(self.containerView, duration: 0.4, options:[.CurveEaseOut,UIViewAnimationOptions.TransitionFlipFromLeft],  animations: { () -> Void in
             self.containerView.hidden = false
-            self.view.bringSubviewToFront(self.containerView)
+            //self.view.bringSubviewToFront(self.containerView)
             
             }, completion: nil )
        

@@ -65,10 +65,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="75" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QQ5-5E-hqd">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQ5-5E-hqd">
                                                     <rect key="frame" x="0.0" y="0.0" width="67" height="98"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePt-Bw-T2s">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePt-Bw-T2s">
                                                     <rect key="frame" x="0.0" y="0.0" width="67" height="98"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,11 +82,24 @@
                                             <constraint firstItem="QQ5-5E-hqd" firstAttribute="leading" secondItem="Ea7-SM-73c" secondAttribute="leading" id="BUj-ag-OWi"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="QQ5-5E-hqd" secondAttribute="trailing" id="OHB-ar-AuP"/>
                                             <constraint firstItem="ePt-Bw-T2s" firstAttribute="top" secondItem="Ea7-SM-73c" secondAttribute="top" id="Qlk-OC-g2N"/>
+                                            <constraint firstItem="ePt-Bw-T2s" firstAttribute="centerY" secondItem="Ea7-SM-73c" secondAttribute="centerY" id="WqF-Hv-87S"/>
                                             <constraint firstItem="QQ5-5E-hqd" firstAttribute="trailing" secondItem="ePt-Bw-T2s" secondAttribute="trailing" id="cxT-UD-O9N"/>
                                             <constraint firstItem="ePt-Bw-T2s" firstAttribute="bottom" secondItem="QQ5-5E-hqd" secondAttribute="bottom" id="qFM-lt-MOz"/>
+                                            <constraint firstItem="ePt-Bw-T2s" firstAttribute="leading" secondItem="Ea7-SM-73c" secondAttribute="leadingMargin" id="reV-77-dL8"/>
                                             <constraint firstAttribute="bottom" secondItem="QQ5-5E-hqd" secondAttribute="bottom" id="s7s-76-k1X"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="ePt-Bw-T2s" secondAttribute="trailing" id="sDe-97-Fcu"/>
                                             <constraint firstItem="ePt-Bw-T2s" firstAttribute="top" secondItem="QQ5-5E-hqd" secondAttribute="top" id="y2D-p7-nbX"/>
+                                            <constraint firstItem="ePt-Bw-T2s" firstAttribute="centerX" secondItem="Ea7-SM-73c" secondAttribute="centerX" id="yhV-pY-j00"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="cxT-UD-O9N"/>
+                                                <exclude reference="AJm-Nh-Stp"/>
+                                                <exclude reference="Qlk-OC-g2N"/>
+                                                <exclude reference="qFM-lt-MOz"/>
+                                                <exclude reference="y2D-p7-nbX"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="imageView" destination="QQ5-5E-hqd" id="cWB-TC-YZ3"/>
                                             <outlet property="label" destination="ePt-Bw-T2s" id="K3d-oe-M7V"/>
@@ -302,8 +315,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="eN5-gh-E6u"/>
                                 <exclude reference="w4h-Rp-M5e"/>
+                                <exclude reference="eN5-gh-E6u"/>
                                 <exclude reference="SGp-ep-Oo8"/>
                                 <exclude reference="cAH-wN-aR8"/>
                             </mask>
