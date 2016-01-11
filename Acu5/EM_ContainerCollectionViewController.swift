@@ -12,6 +12,10 @@ let kItemChosenNotification = "item chosen"
 
 class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var categoryLabel: UILabel!
+  
+    @IBOutlet weak var coloredBarUnderCategory: UIView!
+    
     @IBOutlet weak var countLabel: UILabel!
     
     let nc = NSNotificationCenter.defaultCenter()
@@ -21,6 +25,9 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     var count: Int = 0
     var selectedItem: String = " "
     var selectedImage: UIImageView?
+    var isTopLabelHidden: Bool = true
+    var isBottomLabelHidden: Bool = true
+    
 //    let channelCounts: NSDictionary = ["LU" : 11, "LI" : 18, "ST" : 45, "SP" : 21, "HT" : 9, "SI" : 21, "BL" : 67, "KI" : 27, "PC" : 9, "SJ" : 23, "GB" : 45, "LR" : 18, "REN": 24, "DU": 26]
     
     let transition = PopAnimator()
@@ -28,8 +35,13 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
+        self.coloredBarUnderCategory.hidden = true
         self.countLabel.text = ""
         self.countLabel.textColor = UIColor.whiteColor()
+        self.countLabel.font = UIFont.systemFontOfSize(11, weight: 1)
+        self.categoryLabel.text = ""
+        self.categoryLabel.font = UIFont.systemFontOfSize(24, weight: 3)
+        self.categoryLabel.textColor = UIColor.whiteColor()
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.homeBg()
         self.collectionView.backgroundColor = UIColor.collectionBg()
@@ -48,7 +60,14 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
                 self.cellColor = color as! UIColor
                 self.array = PointController.sharedController.pointsByChannel(selectedCategory)
                 self.count = self.array.count
-                countLabel.text = String("\(category!) channel has \(self.count) points on record")
+                countLabel.text = String("\(self.count) points on record")
+                
+                let tuple = getRegularName(category as! String)
+                let string = tuple.name
+                let barcolor = tuple.color
+                categoryLabel.text = "\(string) channel Points"
+                categoryLabel.textColor = UIColor.whiteColor()
+                coloredBarUnderCategory.backgroundColor = barcolor
                 self.collectionView.reloadData()
             }
             if userInfo["data"] as! String == "Herbs"{
@@ -58,7 +77,13 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
                 self.cellColor = color as! UIColor
                 self.array = HerbsController.sharedController.herbsByCategory(selectedCategory)
                 self.count = self.array.count
-                countLabel.text = String("\(category!) category has \(self.count) herbs on record")
+                countLabel.text = String("\(self.count) herbs on record")
+                let tuple = getRegularName(category as! String)
+                let string = tuple.name
+                let barcolor = tuple.color
+                categoryLabel.text = "\(string)"
+                categoryLabel.textColor = UIColor.whiteColor()
+                coloredBarUnderCategory.backgroundColor = barcolor
                 self.collectionView.reloadData()
             }
         }
@@ -77,8 +102,11 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         cell?.layer.borderColor = UIColor.blackColor().CGColor
         cell?.layer.borderWidth = 1
         cell?.label.textColor = UIColor.blackColor()
+        //cell?.label.font = UIFont.systemFontOfSize(18, weight: 1)
         cell?.topLabel.textColor = UIColor.blackColor()
+        cell?.topLabel.font = UIFont.systemFontOfSize(11)
         cell?.bottomLabel.textColor = UIColor.blackColor()
+        cell?.bottomLabel.font = UIFont.systemFontOfSize(11)
         
         if cell?.backgroundColor == UIColor.waterCellColor() || cell?.backgroundColor == UIColor.blackColor() || cell?.backgroundColor == UIColor.fireCellColor() {
             cell?.label.textColor = UIColor.whiteColor()
@@ -116,7 +144,10 @@ class EM_ContainerCollectionViewController: UIViewController, UICollectionViewDa
         cell?.topLabel.frame.size.height = (cell?.topLabel.requiredHeight())!
         cell?.label.frame.size.height = (cell?.label.requiredHeight())!
         cell?.bottomLabel.frame.size.height = (cell?.bottomLabel.requiredHeight())!
-      
+        
+        cell?.topLabel.hidden = isTopLabelHidden
+        cell?.bottomLabel.hidden = isBottomLabelHidden
+        
         return cell!
     }
     
@@ -187,5 +218,55 @@ extension EM_ContainerCollectionViewController: UIViewControllerTransitioningDel
         return transition
     }
     
+}
+
+extension EM_ContainerCollectionViewController {
+    
+    func getRegularName(abrev: String) -> (name: String, color: UIColor) {
+        var string: String!
+        var color: UIColor!
+        if abrev == "LU"{
+            string = "Lung"
+            color = UIColor.blackColor()
+        } else if abrev == "LI" {
+            string = "Large Intestine"
+            color = UIColor.blackColor()
+        } else if abrev == "ST" {
+            string = "Stomach"
+            color = UIColor.earthCellColor()
+        } else if abrev == "SP" {
+            string = "Spleen"
+            color = UIColor.earthCellColor()
+        } else if abrev == "HT" {
+            string = "Heart"
+            color = UIColor.fireCellColor()
+        } else if abrev == "SI" {
+            string = "Small Intestine"
+            color = UIColor.fireCellColor()
+        } else if abrev == "BL" {
+            string = "Bladder"
+            color = UIColor.waterCellColor()
+        } else if abrev == "KI" {
+            string = "Kidney"
+            color = UIColor.waterCellColor()
+        } else if abrev == "PC" {
+            string = "Pericardium"
+            color = UIColor.fireCellColor()
+        } else if abrev == "SJ" {
+            string = "San Jiao"
+            color = UIColor.fireCellColor()
+        } else if abrev == "LR" {
+            string = "Liver"
+            color = UIColor.woodCellColor()
+        } else if abrev == "GB" {
+            string = "Gall Bladder"
+            color = UIColor.woodCellColor()
+        } else {
+            string = abrev
+            color = UIColor.blackColor()
+        }
+        
+        return (name: string, color: color)
+    }
 }
 

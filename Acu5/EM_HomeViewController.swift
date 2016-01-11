@@ -47,6 +47,8 @@ class EM_HomeViewController: UIViewController {
     let label = UILabel()
     let messages = ["AcuBuddy 5"]
     
+    let webViewBG = UIWebView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +59,7 @@ class EM_HomeViewController: UIViewController {
         setUpYinYang()
         
         //playMovieBg()
+        webViewBG.alpha = 0
         
         UIView.animateWithDuration(4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.CurveEaseIn], animations: { () -> Void in
             self.yinYang1.alpha = 1
@@ -64,7 +67,9 @@ class EM_HomeViewController: UIViewController {
             self.yinYang1.center.y += self.view.bounds.height
             self.yinYang2.center.y -= self.view.bounds.height
             
-            }, completion: nil)
+            }, completion: { _ in
+        
+        })
         
         status.hidden = true
         status.center.x = self.view.center.x
@@ -83,15 +88,16 @@ class EM_HomeViewController: UIViewController {
         
         let filePath = NSBundle.mainBundle().pathForResource("railway", ofType: "gif")
         let gif = NSData(contentsOfFile: filePath!)
-        
-        let webViewBG = UIWebView()
-        
-        webViewBG.frame.size = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
-        webViewBG.center = self.view.center
-        webViewBG.alpha = 1
+        webViewBG.frame.size = CGSize(width: self.view.frame.size.width - 40, height: self.view.frame.size.height - (self.status.frame.origin.y + self.status.frame.size.height + 35))
+        webViewBG.backgroundColor = UIColor.clearColor()
+        webViewBG.center.x = self.view.center.x
+        webViewBG.frame.origin.y = self.status.frame.origin.y + self.status.frame.size.height + 35
         webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+        webViewBG.contentMode = UIViewContentMode.ScaleAspectFit
         webViewBG.userInteractionEnabled = false;
         self.view.addSubview(webViewBG)
+        self.view.bringSubviewToFront(yinYang1)
+        self.view.bringSubviewToFront(yinYang2)
         
         
         let filter = UIView()
@@ -194,6 +200,8 @@ class EM_HomeViewController: UIViewController {
         yinYang2.transform = CGAffineTransformMakeRotation(1/2 * fullRotation)
         self.yinYang1.alpha = 0
         self.yinYang2.alpha = 0
+        self.view.bringSubviewToFront(yinYang1)
+        self.view.bringSubviewToFront(yinYang2)
     }
     
     func buttonTappedHandler(sender: UIButton){

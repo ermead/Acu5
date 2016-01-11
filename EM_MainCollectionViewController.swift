@@ -10,6 +10,8 @@ import UIKit
 
 class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var containerView: UIView!
+    
     let status = UIImageView(image: UIImage(named: "banner"))
     let label = UILabel()
     let messagesPoints = ["Choose a Channel"]
@@ -60,7 +62,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         status.hidden = true
         status.center.x = self.view.center.x
-        status.frame.origin.y = self.view.frame.origin.y + (self.navigationController?.navigationBar.frame.height)! + 35
+        status.frame.origin.y = self.collectionView.frame.origin.y - status.frame.size.height - 15
         view.addSubview(status)
         
         label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
@@ -68,6 +70,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         label.textColor = UIColor(red: 0.89, green: 0.38, blue: 0.0, alpha: 1.0)
         label.textAlignment = .Center
         status.addSubview(label)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -77,10 +80,13 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         } else if data == "Herbs" {
             showMessages(0, arrayOfMessages: messagesHerbs)
         }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.collectionView.frame.size.height = (self.view.frame.width - 40) / 4 + 10
+        containerView.alpha = 0
+        
+        self.collectionView.frame.size.height = (self.view.frame.height - 40) / 4 + 10
     }
     
     //MARK: Collection View
@@ -202,17 +208,27 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+       
+       
         
         let frame1 = collectionView.cellForItemAtIndexPath(indexPath)?.frame
         let frame = CGRect(x: (frame1?.origin.x)! - 5, y: (frame1?.origin.y)! - 5, width: (frame1?.width)! + 10, height: (frame1?.height)! + 10)
         selectedBox.frame = frame
         collectionView.sendSubviewToBack(selectedBox)
         
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.containerView.alpha = 1
+            }, completion: nil )
+        
         let nc = NSNotificationCenter.defaultCenter()
         
         if data == "Points"{
+
             var color: UIColor!
             let ch = channels[indexPath.item]
+            
+            let message = "\(ch) channel Points"
+     
             
             if ch == "LU" || ch == "LI" {
                 color = UIColor.metalCellColor()
@@ -226,6 +242,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
                 color = UIColor.waterCellColor()
             } else if ch == "DU" || ch == "REN" {
                 color = UIColor.blackColor()
+            } else {
+                color = UIColor.blackColor()
             }
             
             let userInfo: NSDictionary = ["data" : self.data!, "selected" : channels[indexPath.item], "color" : color]
@@ -235,6 +253,9 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
             
             var color: UIColor!
             let cat = categories[indexPath.item]
+            
+            let message = "\(cat) Herbs"
+            
             
             if cat == "Release Wind-Cold Exterior"{
                 color = UIColor.herbCatWindCold()
@@ -260,6 +281,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
                 color = UIColor.herbCatDry()
             } else if cat == "Warm the Interior" {
                 color = UIColor.herbCatCold()
+            } else {
+                color = UIColor.blackColor()
             }
 
             let userInfo: NSDictionary = ["data" : self.data!, "selected" : categories[indexPath.item], "color" : color]
@@ -267,9 +290,23 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         }
         
+         showContainer()
+        
     }
 }
 extension EM_MainCollectionViewController {
+    
+    func showContainer(){
+    
+        self.containerView.hidden = true
+        
+        UIView.transitionWithView(self.containerView, duration: 0.4, options:[.CurveEaseOut,UIViewAnimationOptions.TransitionFlipFromLeft],  animations: { () -> Void in
+            self.containerView.hidden = false
+            self.view.bringSubviewToFront(self.containerView)
+            
+            }, completion: nil )
+       
+    }
     
     func showMessages(index: Int, arrayOfMessages: [String]) {
         
