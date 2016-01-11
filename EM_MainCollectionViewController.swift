@@ -84,7 +84,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     override func viewWillAppear(animated: Bool) {
-        containerView.alpha = 0
+        containerView.alpha = 1
         
         self.collectionView.frame.size.height = (self.view.frame.height - 40) / 4 + 10
     }
@@ -202,6 +202,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         blurEffectView.frame = selectedBox.bounds
         self.selectedBox.addSubview(blurEffectView)
         self.selectedBox.layer.cornerRadius = 5
+        self.selectedBox.alpha = 1
         self.selectedBox.backgroundColor = UIColor.selectedBoxColor()
         self.selectedBox.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         collectionView.addSubview(selectedBox)
@@ -213,7 +214,9 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
         
         let frame1 = collectionView.cellForItemAtIndexPath(indexPath)?.frame
         let frame = CGRect(x: (frame1?.origin.x)! - 5, y: (frame1?.origin.y)! - 5, width: (frame1?.width)! + 10, height: (frame1?.height)! + 10)
+        
         selectedBox.frame = frame
+        
         collectionView.sendSubviewToBack(selectedBox)
         
         UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -245,7 +248,7 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
             } else {
                 color = UIColor.blackColor()
             }
-            
+            //selectedBox.backgroundColor = color
             let userInfo: NSDictionary = ["data" : self.data!, "selected" : channels[indexPath.item], "color" : color]
             nc.postNotificationName("category chosen", object: self, userInfo: userInfo as [NSObject : AnyObject])
         }
@@ -284,7 +287,8 @@ class EM_MainCollectionViewController: UIViewController, UICollectionViewDataSou
             } else {
                 color = UIColor.blackColor()
             }
-
+            
+            //selectedBox.backgroundColor = color
             let userInfo: NSDictionary = ["data" : self.data!, "selected" : categories[indexPath.item], "color" : color]
             nc.postNotificationName("category chosen", object: self, userInfo: userInfo as [NSObject : AnyObject])
         

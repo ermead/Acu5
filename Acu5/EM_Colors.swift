@@ -69,7 +69,7 @@ extension UIColor {
     
     static func selectedBoxColor() -> UIColor {
         
-        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         
     }
     
